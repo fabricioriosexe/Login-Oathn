@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* Importa la fuente 'Montserrat' desde Google Fonts. Los valores de 'wght' indican los pesos (gruesos) disponibles para la fuente. */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+/* Aplica a todos los elementos: elimina el margen y el relleno por defecto.
+   'box-sizing: border-box' asegura que el padding y borde no afecten las dimensiones de los elementos.
+   Usa la fuente 'Montserrat' para todo el contenido. */
+
+body{
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+/* Establece un fondo degradado en el cuerpo de la página.
+   La página se alinea vertical y horizontalmente en el centro de la pantalla.
+   Usa flexbox para centrar su contenido.
+   El 'height: 100vh' asegura que el contenido ocupe toda la altura de la ventana. */
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+/* Define un contenedor central con fondo blanco.
+   Tiene esquinas redondeadas (30px) y una sombra para un efecto de elevación.
+   La 'width' fija en 768px, pero nunca excederá el 100% de la pantalla (en pantallas más pequeñas).
+   'overflow: hidden' oculta cualquier contenido que se salga del contenedor. */
+
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+/* Estilo para los párrafos dentro del contenedor.
+   Ajusta el tamaño de fuente, altura de línea y espaciado entre letras. */
+   
+.container span{
+    font-size: 12px;
+}
+/* Estilo para los elementos 'span' dentro del contenedor con tamaño de fuente más pequeño. */
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+/* Los enlaces dentro del contenedor no tienen subrayado ('text-decoration: none') y usan un color oscuro (#333). */
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+/* Estilo para los botones.
+   Fondo púrpura (#512da8), texto blanco y tamaño de fuente de 12px.
+   'border-radius: 8px' redondea los bordes del botón.
+   'cursor: pointer' cambia el cursor a una mano al pasar sobre el botón. */
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+/* Estilo para los botones con la clase 'hidden'.
+   Hace que el fondo sea transparente y que los bordes sean blancos. */
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+/* Los formularios dentro del contenedor usan flexbox para centrar su contenido.
+   Tienen un relleno de 40px a los lados y ocupan todo el alto del contenedor. */
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+/* Estilo para los campos de entrada (inputs).
+   Fondo gris claro, sin bordes y bordes redondeados (8px).
+   Ocupan el 100% del ancho disponible dentro del contenedor. */
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+/* Los formularios están posicionados de manera absoluta dentro del contenedor padre.
+   La altura ocupa el 100% del contenedor y tienen una transición suave de 0.6s. */
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+/* El formulario de inicio de sesión comienza alineado a la izquierda del contenedor.
+   Ocupa el 50% del ancho del contenedor y está en un nivel superior con z-index: 2. */
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+/* Cuando el contenedor tiene la clase 'active', el formulario de inicio se desplaza hacia la derecha (fuera de la vista). */
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+/* El formulario de registro comienza con opacidad 0 (invisible) y tiene un z-index más bajo que el formulario de inicio. */
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+/* Cuando el contenedor está activo, el formulario de registro se desplaza hacia la derecha y aumenta su opacidad para hacerse visible.
+   Se le asigna un z-index más alto para que quede por encima del formulario de inicio. */
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+/* Define una animación llamada 'move' que controla la opacidad y el z-index en diferentes momentos de la animación (de 0% a 100%).
+   Al 50% de la animación, el formulario se vuelve visible y aumenta su z-index. */
+
+.social-icons{
+    margin: 20px 0;
+}
+/* Estilo para los iconos sociales dentro del contenedor.
+   Se les da un margen de 20px en la parte superior e inferior. */
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+/* Los iconos de redes sociales tienen un borde gris claro y esquinas redondeadas (20%).
+   Se usan 'inline-flex' para centrar el contenido dentro de cada icono. */
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+/* El contenedor de alternancia (que separa el formulario de inicio y registro) está posicionado absolutamente.
+   Ocupa el 50% del ancho y 100% de la altura, con un borde redondeado en la esquina izquierda. */
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+/* Cuando el contenedor está activo, la 'toggle-container' se desplaza hacia la izquierda y ajusta su borde redondeado en la esquina derecha. */
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+/* El panel de alternancia tiene un fondo con degradado de púrpura claro a oscuro.
+   Ocupa el doble del ancho disponible, pero está desplazado hacia la izquierda para que solo se vea la mitad. */
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+/* Cuando el contenedor está activo, la 'toggle' se desplaza a la derecha para mostrar el otro formulario. */
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+/* Los paneles de alternancia están centrados usando flexbox y ocupan el 50% del ancho. */
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+/* El panel izquierdo comienza desplazado hacia la izquierda (fuera de la vista). */
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+/* Cuando el contenedor está activo, el panel izquierdo se desliza a su posición original. */
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+/* El panel derecho comienza en su posición original, alineado a la derecha. */
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+/* Cuando el contenedor está activo, el panel derecho se desplaza fuera de la vista hacia la derecha. */
